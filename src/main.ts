@@ -3,7 +3,9 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
+  app.enableCors({
+    exposedHeaders: ['token'], // Expose the 'token' header to the client
+  });
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
